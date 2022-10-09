@@ -1,15 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import LandingPage from "../components/LandingPage";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import LandingPage from "../Components/LandingPage";
 
 function Navs() {
   return (
     <Router>
-      <Switch>
+      <Routes>
         <Route path="/">
          <LandingPage/>
         </Route>
-      </Switch>
+      </Routes>
     </Router>
   );
 }

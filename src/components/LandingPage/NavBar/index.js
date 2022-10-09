@@ -13,8 +13,13 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Logo from "../../../assets/Slogo.png";
-const pages = ["Home", "Find clients", "Find Candidates", "Articles"];
+import { textTransform } from "@mui/system";
+
+
+const pages = ["Home", "Find Clients", "Find Candidates", "Articles"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -35,8 +40,10 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
+
   return (
-    <AppBar position="static">
+    
+    <AppBar position="static" style={{ background: '#ffffff', "font-weight": 900}} >
       <Container
         variant="div"
         sx={{
@@ -87,7 +94,7 @@ const Navbar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center" textTransform="none" >{page} </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -96,14 +103,14 @@ const Navbar = () => {
             <img
               src={Logo}
               alt="logo"
-              style={{ maxWidth: "100px", width: "100%" }}
+              style={{ maxWidth: "100px", width: "100%"}}
             />
           </Box>
           <Box
             sx={{
               width: { sm: "0%", md: "60%" },
               display: { xs: "none", md: "flex" },
-              justifyContent: " space-around",
+              justifyContent: "space-between",
               maxWidth: "600px",
               margin: "auto",
             }}
@@ -113,15 +120,16 @@ const Navbar = () => {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "#000", display: "block" }}
+                style={{textTransform: "none", fontWeight: "520", "width": "50%"}}
               >
                 {page}
               </Button>
             ))}
           </Box>
 
-          <Box sx={{ width: { xs: "60%", md: "20%" } }}>
-            <Button>Login</Button>
-            <Button style={{}}>Register Now</Button>
+          <Box sx={{ width: { xs: "40%", md: "15%",}}}>
+            <Button style={{textTransform: "none", fontWeight: "520", color: "black"}}>Log in</Button>
+            <Button style={{background:"blue", color:"white", "font-size": "12px", "margin-left": "12px",  textTransform: "none", "border-radius": "5px", "padding": "5px 10px 5px 10px" }}>Register Now</Button>
           </Box>
         </Toolbar>
       </Container>

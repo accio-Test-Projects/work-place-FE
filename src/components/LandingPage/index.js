@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./NavBar";
+import Section3 from "./section-3/section.js"
 function LandingPage() {
   return (
     <div>
@@ -15,13 +16,7 @@ function LandingPage() {
         <p>cards</p>
         <p>cards</p>
       </div>
-      <div>
-        <h1>Featured Job Circulars</h1>
-        <p>cards</p> <p>cards</p> <p>cards</p> <p>cards</p>
-      </div>
-      <div>
-        <button>Find More Jobs</button>
-      </div>
+      <Section3 />
       <div>Banner img</div>
       <div>Never Want to Miss Any Job News?</div>
       <footer>footer</footer>

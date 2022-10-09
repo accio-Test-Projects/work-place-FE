@@ -1,8 +1,6 @@
 import React from "react";
 import Navbar from "./NavBar";
-
-
-function LandingPage() {  
+function LandingPage() {
   return (
     <div>
       <div>
@@ -19,10 +17,7 @@ function LandingPage() {
       </div>
       <div>
         <h1>Featured Job Circulars</h1>
-        <p>cards</p> 
-        <p>cards</p> 
-        <p>cards</p> 
-        <p>cards</p>
+        <p>cards</p> <p>cards</p> <p>cards</p> <p>cards</p>
       </div>
       <div>
         <button>Find More Jobs</button>

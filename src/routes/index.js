@@ -6,9 +6,7 @@ function Navs() {
   return (
     <Router>
       <Routes>
-        <Route path="/">
-         <LandingPage/>
-        </Route>
+        <Route path="/"  element={<LandingPage/>} />
       </Routes>
     </Router>
   );

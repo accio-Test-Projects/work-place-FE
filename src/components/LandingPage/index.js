@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "./NavBar";
+import Containers from "./Containers"
 function LandingPage() {
   return (
     <div>
       <div>
         <Navbar/>
-        <div>Get The Right Job You Deserve</div>
-        <input />
+        <Containers />
       </div>
       <div>
         <h1>One Platform Many Solutions</h1>

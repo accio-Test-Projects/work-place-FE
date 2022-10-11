@@ -22,6 +22,7 @@ input{
 }
 input:focus{
     border: none;
+    outline: none;
 }
 button{
     width: 119px;
@@ -50,5 +51,5 @@ button{
     margin-right: 140px;
 }
 small{
-    margin-left: 200px;
+    margin-left: 190px;
 }

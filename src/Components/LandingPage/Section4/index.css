@@ -1,0 +1,53 @@
+.section4-main {
+    background-color: #4540DB;
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 20px;
+}
+.section4-main{
+    display: flex;
+    justify-content: space-around;
+}
+
+.sub-main{
+    /* display: flex; */
+    flex-direction: row;
+}
+
+.main-text {
+    color: white;
+    Width: 516px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 47px;
+}
+
+.sub-text {
+    width: 553px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 21px;
+
+    color: #FFFFFF;
+
+}
+
+.section4-main button{
+    color: #4540DB;
+    width: 186px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 20px;
+    border:none;
+    font-weight: bold;
+}
+.section4-main svg{
+    height:14px;
+    margin-right: 3px;
+    font-weight: bold;
+}

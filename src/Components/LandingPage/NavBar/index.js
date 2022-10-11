@@ -39,16 +39,13 @@ const NavBar = () => {
   return (
     <AppBar position="static">
       <Container
-      sx={{background:'white', color:'#000', justifyContent:'space-between'}}
-      maxWidth="xl">
-        <Toolbar disableGutters>
-            <Typography
-            variant = "p"
-            sx = {{width:'20%'}}
-            >
-                <img src = {Logo} alt = "logo" style = {{width:'100px'}}/>
-            </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+        variant="div"
+        sx={{ background: 'white', display: 'flex', width: '100%', color: '#000', justifyContent: 'space-between' }}
+        maxWidth="xl">
+        <Toolbar
+          sx={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}
+          disableGutters>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -84,26 +81,19 @@ const NavBar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+          <Box
+            sx={{ width: '20%' }}
           >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, width: '50%', display: { xs: 'none', md: 'flex' } }}>
+            <img src={Logo} alt="logo" style={{ maxWidth: '100px', width: '100%' }} />
+          </Box>
+
+          <Box sx={{
+            width: { sm: '0%', md : '60%' },
+            display: { xs: 'none', md: 'flex' },
+            justifyContent: 'space-around',
+            maxWidth: '600px',
+            margin: 'auto'
+          }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -115,12 +105,10 @@ const NavBar = () => {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0, width:'20%' }}>
-            <div>
-                <button>Log In</button>
-                <button>Register Now</button>
-            </div>
-            
+          <Box sx={{ width: { xs: '60%', md: "20%" } }}>
+            <Button >Log In</Button>
+            <Button >Register Now</Button>
+
           </Box>
         </Toolbar>
       </Container>

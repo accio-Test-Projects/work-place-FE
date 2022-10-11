@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "./NavBar";
-import Containers from "./Containers"
+import Headers from "./Headers"
 function LandingPage() {
   return (
     <div>
       <div>
         <Navbar/>
-        <Containers />
+        <Headers />
       </div>
       <div>
         <h1>One Platform Many Solutions</h1>

@@ -9,7 +9,7 @@ import Search from "../../../assets/svgFile/search.svg";
 import Location from "../../../assets/svgFile/location.svg";
 import { display } from "@mui/system";
 
-export default function Containers() {
+export default function Headers() {
   return (
         <Box variant="div"
           sx={{

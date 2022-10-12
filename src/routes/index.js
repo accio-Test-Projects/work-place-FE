@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
-import LandingPage from "../Components/LandingPage";
-import Signup from "../Components/Signup";
+import LandingPage from "../components/LandingPage";
+import Signup from "../components/Signup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function Navs() {

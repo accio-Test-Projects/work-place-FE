@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+  }
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   background-color: #FFFFFF;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+   height: 150px;
+   z-index: 100;
+   border-radius: 16px;
+   position: absolute;
+   bottom: -3000px;
+   right: 190px;
+   
+  }
+  .flex-item {
+    font-size: 2rem;
+    text-align: center;
+    margin: 20px;
+  }
+  form {
+    display:flex;
+    flex-direction:row;
+    border: 1px solid #ddd;
+    padding: 2px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+  
+  }
+  .flex-item input {
+   
+    color: #222;
+    border-radius: 20px;
+    padding: 9px;
+    border: none;
+    outline: transparent;
+    flex-grow: 2;
+    font-size: 1.rem;
+  }
+  .flex-item button {
+    background-color: #4540DB;
+    color: #FFFFFF;
+    border-radius: 20px;
+    border: transparent;
+    font-style: bold;
+    font-size: 18px;
+    text-align: center;
+    line-height: 100%;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 200px;
+    background-color: rgba(244, 245, 250, 1);
+    border-bottom: 2px inset #CDCDCD;
+    text-align: center;
+    position: relative;
+  }
+  .footer-item {
+    margin-bottom: 30px;
+    cursor: pointer;
+  }
+  .bottom-footer-container {
+    background-color: rgba(244, 245, 250, 1);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 60px;
+  }
+  @media only screen and (max-width:900px){
+    .flex-container {
+      flex-direction: column;
+      position: relative;
+      right: 0;
+      bottom: 0;
+    }
+    .flex-item {
+      padding: 8px;
+      font-size: 1rem;
+      text-align: center;
+      margin: 0;
+    }
+    .flex-item input {
+      flex-grow: 1;
+      padding: 4px;
+      
+    }
+    .flex-item button {
+      padding: 4px;
+      font-size: 8px;
+      border-radius: 10px;
+    }
+    .footer-container {  
+      padding-top: 10px;
+      flex-direction: column;
+      justify-content: space-between;
+      height: auto;
+      align-items: center;
+    }
+  }

@@ -1,25 +1,33 @@
 import React from "react";
-import Navbar from "./NavBar";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 import Section2 from "./Section2/Section2";
+import Section3 from "./section-3/section.js";
+import BannerImage from "./Section4";
+import Headers from "./Headers";
 function LandingPage() {
   return (
     <div>
       <div>
-        <Navbar/>
-        <div>Get The Right Job You Deserve</div>
-        <input />
+        <NavBar />
+        <Headers />
       </div>
-      <Section2/>
+
       <div>
-        <h1>Featured Job Circulars</h1>
-        <p>cards</p> <p>cards</p> <p>cards</p> <p>cards</p>
+        <Section2 />
       </div>
+
+      <Section3 />
       <div>
         <button>Find More Jobs</button>
       </div>
-      <div>Banner img</div>
+
+      <div>
+        <BannerImage />
+      </div>
+
       <div>Never Want to Miss Any Job News?</div>
-      <footer>footer</footer>
+      <Footer />
     </div>
   );
 }

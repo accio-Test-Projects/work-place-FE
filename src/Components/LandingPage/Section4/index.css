@@ -1,0 +1,107 @@
+.section4-main {
+    background-color: #4540DB;
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 20px;
+}
+
+.section4-main {
+    display: flex;
+    justify-content: space-around;
+}
+
+.sub-main {
+    /* display: flex; */
+    flex-direction: row;
+}
+
+.main-text {
+    color: white;
+    Width: 516px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 47px;
+}
+
+.sub-text {
+    width: 553px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 21px;
+
+    color: #FFFFFF;
+
+}
+
+.section4-main button {
+    color: #4540DB;
+    width: 186px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+}
+
+.section4-main svg {
+    height: 14px;
+    margin-right: 3px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1920px) {
+    .section4-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .section4-main img {
+        width: 95%;
+    }
+
+    .sub-main {
+        width: 90%;
+        /* font-size: 5px; */
+    }
+
+    .main-text {
+        width: 90%;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 30px;
+        /* line-height: 21px; */
+        margin-left: 15px;
+        /* margin-left:5px; */
+        color: #FFFFFF;
+    }
+
+    .sub-text {
+        width: 90%;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        /* line-height: 21px; */
+        color: #FFFFFF;
+    }
+
+    .section4-main button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* margin-left: 20%; */
+        /* left:50%; */
+        margin-bottom: 20px;
+        left: 50%;
+        /* -ms-transform: translate(50%, 50%); */
+        transform: translate(25%, -15%);
+    }
+}

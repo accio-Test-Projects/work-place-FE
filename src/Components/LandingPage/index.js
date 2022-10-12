@@ -3,13 +3,13 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Section2 from "./Section2/Section2";
 import BannerImage from './Section4'
+import Headers from "./Headers";
 function LandingPage() {
     return (
         <div>
             <div>
                 <NavBar />
-                <div>Get The Right Job You Deserve</div>
-                <input />
+                <Headers />
             </div>
 
             <div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import LandingPage from "../components/LandingPage";
-import Signup from "../components/Signup";
+import LandingPage from "../Components/LandingPage";
+import Signup from "../Components/Signup";
 import history from "./history";
 function Navs() {
   return (

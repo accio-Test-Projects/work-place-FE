@@ -1,11 +1,11 @@
 import React from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { useHistory } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import "./signIn.css";
 import { ReactComponent as Google } from "./Google.svg";
 
 function Signup({ type }) {
-  const history = useHistory();
+  let navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   console.log(type);
   const signIn = () => {
@@ -21,9 +21,9 @@ function Signup({ type }) {
         const user = result.user;
         console.log(user, "token", token);
         if (type === "client") {
-          history.push("/onboarding/client");
+          navigate("/onboarding/client");
         } else {
-          history.push("/onboarding/candidate");
+          navigate("/onboarding/candidate");
         }
         // ...
       })

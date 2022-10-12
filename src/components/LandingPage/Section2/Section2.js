@@ -11,7 +11,7 @@ const Section2 = () => {
         <>
             <div className="section-2">
                 <div className="title">
-                    <h1>One Platform<br />Many <span className='solution'>Solutions</span></h1>
+                    <p>One Platform<br />Many <span className='solution'>Solutions</span></p>
                 </div>
                 <div className="card-container">
 

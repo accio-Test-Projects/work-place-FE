@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./NavBar";
 import Section2 from "./Section2/Section2";
+import BannerImage from './Section4'
 function LandingPage() {
   return (
     <div>
@@ -17,7 +18,7 @@ function LandingPage() {
       <div>
         <button>Find More Jobs</button>
       </div>
-      <div>Banner img</div>
+      <div><BannerImage /></div>
       <div>Never Want to Miss Any Job News?</div>
       <footer>footer</footer>
     </div>

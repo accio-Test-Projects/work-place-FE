@@ -13,10 +13,12 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Logo from "../../../assets/Slogo.png";
+import { useHistory, Link } from "react-router-dom";
 const pages = ["Home", "Find clients", "Find Candidates", "Articles"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = () => {
+  const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -26,15 +28,27 @@ const Navbar = () => {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
+  const goToClientSignIn = () => {
+    history.push("/signIn/client");
+  };
+  const goToCandidateSignIn = () => {
+    history.push("/signIn/candidate");
+  };
+
+  const handleNavBtnClick = (page) => {
+    if (page.toLowerCase() === "find clients") {
+      goToClientSignIn();
+    } else if (page.toLowerCase() === "find candidates") {
+      goToCandidateSignIn();
+    }
+  };
   return (
     <AppBar position="static">
       <Container
@@ -101,9 +115,9 @@ const Navbar = () => {
           </Box>
           <Box
             sx={{
-              width: { sm: "0%", md: "60%" },
+              width: { sm: "0%", md: "80%" },
               display: { xs: "none", md: "flex" },
-              justifyContent: " space-around",
+              justifyContent: " space-between",
               maxWidth: "600px",
               margin: "auto",
             }}
@@ -111,18 +125,19 @@ const Navbar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleNavBtnClick(page)}
                 sx={{ my: 2, color: "#000", display: "block" }}
               >
                 {page}
               </Button>
             ))}
           </Box>
-
-          <Box sx={{ width: { xs: "60%", md: "20%" } }}>
-            <Button>Login</Button>
+          {/* <Box sx={{ width: { xs: "60%", md: "20%" } }}>
+            <Button>
+              <Link to="/signup">Login</Link>
+            </Button>
             <Button style={{}}>Register Now</Button>
-          </Box>
+</Box> */}
         </Toolbar>
       </Container>
     </AppBar>

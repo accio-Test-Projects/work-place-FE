@@ -15,6 +15,7 @@ function Navs() {
           />
           <Route path="/signIn/client" element={<Signup type={"client"} />} />
           <Route
+          
             path="/onboarding/client"
             element={() => {
               return <h1>client</h1>;

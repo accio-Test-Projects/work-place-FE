@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Logo from "../../../assets/Slogo.png";
 import { textTransform } from "@mui/system";
-import { useHistory, Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 const pages = ["Home", "Find Clients", "Find Candidates", "Articles"];
 
@@ -23,7 +23,7 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 
 const Navbar = () => {
-  const history = useHistory();
+  let navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -41,10 +41,10 @@ const Navbar = () => {
   };
 
   const goToClientSignIn = () => {
-    history.push("/signIn/client");
+    navigate("/signIn/client");
   };
   const goToCandidateSignIn = () => {
-    history.push("/signIn/candidate");
+    navigate("/signIn/candidate");
   };
 
   const handleNavBtnClick = (page) => {

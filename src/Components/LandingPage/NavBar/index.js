@@ -78,9 +78,8 @@ const Navbar = () => {
         >
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
+              size="small"
+              sx={{width: "50px", height: "50px"}}
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
@@ -140,10 +139,10 @@ const Navbar = () => {
             ))}
           </Box>
 
-          <Box sx={{ display:'flex', width: { xs: "40%", md: "15%",}}}>
+          {/* <Box sx={{ display:'flex', width: { xs: "40%", md: "15%",}}}>
             <Button style={{textTransform: "none", fontWeight: "520", color: "black"}}>Log in</Button>
             <Button style={{background:"blue", color:"white", "font-size": "12px", "margin-left": "12px",  textTransform: "none", "border-radius": "5px", "padding": "5px 10px 5px 10px" }}>Register Now</Button>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>

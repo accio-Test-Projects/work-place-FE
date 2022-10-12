@@ -1,6 +1,8 @@
 import React from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useHistory } from "react-router-dom";
+import "./signIn.css";
+import { ReactComponent as Google } from "./Google.svg";
 
 function Signup({ type }) {
   const history = useHistory();
@@ -11,7 +13,7 @@ function Signup({ type }) {
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result,'result');
+        console.log(result, "result");
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
@@ -38,8 +40,16 @@ function Signup({ type }) {
       });
   };
   return (
-    <div>
-      <button onClick={signIn}>Signup with Google</button>
+    <div className="container">
+      <div className="card">
+        <h1>Sign Up</h1>
+        <div className="signIn-btn">
+          <button onClick={signIn}>
+            <Google />
+            <h3>Signup with Google</h3>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

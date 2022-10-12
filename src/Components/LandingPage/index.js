@@ -1,5 +1,6 @@
-import React from 'react'
-import NavBar from './NavBar'
+import React from "react";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 import Section2 from "./Section2/Section2";
 import BannerImage from './Section4'
 function LandingPage() {
@@ -27,11 +28,9 @@ function LandingPage() {
             <div><BannerImage /></div>
 
             <div>Never Want to Miss Any Job News?</div>
-
-            <footer>Footer</footer>
-
-        </div>
-    )
+      <Footer />
+    </div>
+  );
 }
 
-export default LandingPage
+export default LandingPage;

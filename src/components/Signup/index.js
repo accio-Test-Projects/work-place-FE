@@ -1,6 +1,9 @@
 import React from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useHistory } from "react-router-dom";
+import Girl from "../../assets/girl.png";
+import Google from "../../assets/google.png";
+import "./index.css";
 
 function Signup({ type }) {
   const history = useHistory();
@@ -38,8 +41,16 @@ function Signup({ type }) {
       });
   };
   return (
-    <div>
-      <button onClick={signIn}>Signup with Google</button>
+    <div className="container">
+      <div className="buttonSide">
+        <div className="fontSide">
+          <h1>Welcome Client</h1>
+          <h3>Sign In</h3>
+        </div>
+
+      <button onClick={signIn}><img src={Google} alt="goog"/></button>
+      </div>
+      <img src={Girl} alt="girl"/>
     </div>
   );
 }

@@ -1,0 +1,52 @@
+.container{
+    display:flex;
+    align-items: center;
+    justify-content:  flex-end  ;
+    width: 100%;
+    flex-flow: column wrap-reverse;
+    flex-direction: row;
+    
+}
+
+.buttonSide{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    
+    
+}
+
+.fontSide{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fontSide h1{
+    font-family:PT Mono;
+    font-Weight:700;
+    font-size:3rem;
+    margin: 0%;
+    margin-bottom: 10%;
+    
+}
+.fontSide h3{
+    font-family:PT Mono;
+    font-Weight:700;
+    font-size:3rem;
+    margin: 0%;
+    margin-bottom: 10%;
+
+}
+
+.buttonSide button{
+    width: 80%;
+    background-color: #1675a8;
+    border-style: none;
+    border-radius: 2rem;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}

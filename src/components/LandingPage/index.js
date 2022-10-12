@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./NavBar";
 import Section2 from "./Section2/Section2";
+import Footer from "./Footer/Footer";
 function LandingPage() {
   return (
     <div>
@@ -20,6 +21,9 @@ function LandingPage() {
       <div>Banner img</div>
       <div>Never Want to Miss Any Job News?</div>
       <footer>footer</footer>
+      
+        <Footer/>
+    
     </div>
   );
 }

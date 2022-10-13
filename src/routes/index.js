@@ -1,29 +1,36 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import LandingPage from "../components/LandingPage";
-import Signup from "../components/Signup";
-import history from "./history";
+import React, { Suspense } from "react";
+import LandingPage from "../Components/LandingPage";
+import Signup from "../Components/Signup";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 function Navs() {
   return (
-    <Router history={history}>
-      <Switch>
-        <Route exact path="/">
-          <LandingPage />
-        </Route>
-        <Route path="/signIn/candidate">
-          <Signup type={"candidate"} />
-        </Route>
-        <Route path="/signIn/client">
-          <Signup type={"client"} />
-        </Route>
-        <Route path="/onboarding/client">
-          <h1>client</h1>
-        </Route>
-        <Route path="/onboarding/candidate">
-          <h1>candidate</h1>
-        </Route>
-      </Switch>
-    </Router>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route
+            path="/signIn/candidate"
+            element={<Signup type={"candidate"} />}
+          />
+          <Route path="/signIn/client" element={<Signup type={"client"} />} />
+          <Route
+          
+            path="/onboarding/client"
+            element={() => {
+              return <h1>client</h1>;
+            }}
+          />
+
+          <Route
+            path="/onboarding/candidate"
+            element={() => {
+              return <h1>candidate</h1>;
+            }}
+          />
+        </Routes>
+      </Router>
+    </Suspense>
   );
 }
 

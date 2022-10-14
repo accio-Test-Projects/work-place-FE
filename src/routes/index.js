@@ -1,6 +1,8 @@
 import React, { Suspense } from "react";
 import LandingPage from "../Components/LandingPage";
 import Signup from "../Components/Signup";
+import ClientOnboarding from "../Components/OnboardingForm/ClientOnboarding";
+import CandidateONboarding from "../Components/OnboardingForm/CandidateOnboarding";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function Navs() {
@@ -14,19 +16,11 @@ function Navs() {
             element={<Signup type={"candidate"} />}
           />
           <Route path="/signIn/client" element={<Signup type={"client"} />} />
-          <Route
-          
-            path="/onboarding/client"
-            element={() => {
-              return <h1>client</h1>;
-            }}
-          />
+          <Route path="/onboarding/client" element={<ClientOnboarding />} />
 
           <Route
             path="/onboarding/candidate"
-            element={() => {
-              return <h1>candidate</h1>;
-            }}
+            element={<CandidateONboarding />}
           />
         </Routes>
       </Router>

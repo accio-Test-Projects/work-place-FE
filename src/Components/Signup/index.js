@@ -46,7 +46,7 @@ function Signup({ type }) {
         <div className="signIn-btn">
           <button onClick={signIn}>
             <Google />
-            <h3>Signup with Google</h3>
+            <h3>Signup</h3>
           </button>
         </div>
       </div>

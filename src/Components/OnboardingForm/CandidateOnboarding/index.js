@@ -9,7 +9,7 @@ import { useTheme } from "@mui/material/styles";
 import InputLabel from "@mui/material/InputLabel";
 import { Label } from "@mui/icons-material";
 import ListItemText from "@mui/material/ListItemText";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
 import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -26,7 +26,6 @@ const MenuProps = {
 };
 
 function CandidateONboarding() {
-
   const theme = useTheme();
   const [candidateInfo, setCandidateInfo] = React.useState({
     name: "",
@@ -62,17 +61,18 @@ function CandidateONboarding() {
   };
 
   const submitInfo = async (e) => {
-    let userInfo=JSON.parse(localStorage.getItem("user"));
-    let userId=userInfo.uid;
+    let userInfo = JSON.parse(localStorage.getItem("user"));
+    let userId = userInfo.uid;
     e.preventDefault();
-    alert('submit')
     console.log(candidateInfo);
     try {
-      const docRef = await addDoc(collection(db, "usersData"), {
-        ...candidateInfo,
-        userId:userId
-      });
-      console.log("Document written with ID: ", docRef.id);
+      const docRef = await setDoc(doc(db, "usersData",userId), {
+          ...candidateInfo,
+          userId: userId,
+          step:2
+        })
+     
+      console.log("Document written with ID: ", docRef);
     } catch (e) {
       console.error("Error adding document: ", e);
     }

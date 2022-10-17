@@ -80,8 +80,9 @@ function CandidateONboarding() {
   return (
     <div
       style={{
-        backgroundColor: "#F2F2F2",
+        backgroundColor: "#e5e5e5",
         minHeight: "100vh",
+        paddingTop:"50px"
       }}
     >
       <form onSubmit={(e) => submitInfo(e)}>
@@ -91,10 +92,24 @@ function CandidateONboarding() {
             margin: "auto",
             background: "#fff",
             padding: "20px",
+            paddingTop:"50px",
+            borderRadius:'20px'
           }}
         >
-          <Grid container spacing={1}>
-            <Grid xs={12} md={6}>
+        <Grid container 
+              spacing={3}
+              maxWidth="80%"
+              p={4}
+              sx={{
+                backgroundColor: "#FFFFFF",
+                boxShadow: "0px 0px 15px #DCD7D7",
+                margin: "auto",
+                fontSize: "15px"
+              }}
+          >
+
+            {/* ====================================================================================== */}
+            <Grid item xs={12} md={6}>
               <label>Name*</label>
               <TextField
                 required
@@ -110,7 +125,7 @@ function CandidateONboarding() {
                 variant="outlined"
               />
             </Grid>
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>email*</label>
               <TextField
                 required
@@ -128,7 +143,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>Phone no.*</label>
               <TextField
                 required
@@ -147,7 +162,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={12}>
+            <Grid item xs={12} md={12}>
               <label>Education</label>
               <TextField
                 value={candidateInfo.education}
@@ -163,7 +178,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={12}>
+            <Grid item xs={12} md={12}>
               <label>Experience</label>
               <TextField
                 value={candidateInfo.experience}
@@ -179,7 +194,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>linkedIn</label>
               <TextField
                 value={candidateInfo.socialMedia.linkedIn}
@@ -200,7 +215,7 @@ function CandidateONboarding() {
                 variant="outlined"
               />
             </Grid>
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>Twitter</label>
               <TextField
                 value={candidateInfo.socialMedia.twitter}
@@ -222,7 +237,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>Github</label>
               <TextField
                 value={candidateInfo.socialMedia.github}
@@ -240,7 +255,7 @@ function CandidateONboarding() {
                 variant="outlined"
               />
             </Grid>
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>Instagram</label>
               <TextField
                 value={candidateInfo.socialMedia.instagram}
@@ -262,7 +277,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <la>Tags*</la>
               <FormControl required sx={{ width: "100%" }}>
                 <InputLabel id="demo-multiple-checkbox-label">
@@ -290,7 +305,7 @@ function CandidateONboarding() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <la>intrested Domains*</la>
               <FormControl fullWidth required sx={{ minWidth: "100%" }}>
                 <InputLabel id="demo-simple-select-required-label">
@@ -314,9 +329,24 @@ function CandidateONboarding() {
                 <FormHelperText>Required</FormHelperText>
               </FormControl>
             </Grid>
+
+
+            {/* --------------------------------------------------- */}
+
+            <Grid item lg={12}>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="small"
+                type="submit"
+                sx={{ float: "right",width:"150px"}}
+              >
+                Submit
+              </Button>
+            </Grid>
+            {/* ---------------------------------------------------------- */}
           </Grid>
         </div>
-        <Button type="submit">Submit</Button>
       </form>
     </div>
   );

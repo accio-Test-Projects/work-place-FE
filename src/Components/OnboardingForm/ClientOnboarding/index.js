@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Grid, Box, Button } from "@mui/material";
-
-
+import { addDoc, setDoc, doc } from "firebase/firestore";
+import { db } from "../../../config/firebaseInitisize";
 function ClientOnboarding() {
   const [clientInfo, setClientInfo] = React.useState({
     name: "",
@@ -13,11 +13,32 @@ function ClientOnboarding() {
   });
 
   const submitInfo = async (e) => {
-    
+    let userInfo = JSON.parse(localStorage.getItem("user"));
+    let userId = userInfo.uid;
     e.preventDefault();
-    alert('submit')
     console.log(clientInfo);
+    try {
+      
+      const docRef = await setDoc(doc(db, "usersData",userId), {
+          ...clientInfo,
+          userId: userId,
+          step:2,
+          user_type:"client"
+        })
+     
+      console.log("Document written with ID: ", docRef);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
     
+    setClientInfo({
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      location: "",
+      website: "",
+    });
   };
 
 
@@ -45,8 +66,8 @@ function ClientOnboarding() {
             padding: "70px",
           }}
         >
-          <Grid container spacing={1}>
-            <Grid xs={12} md={12}>
+          <Grid container spacing={3}>
+            <Grid xs={12} md={6}>
               <label>Name*</label>
               <TextField
                 required
@@ -62,7 +83,7 @@ function ClientOnboarding() {
                 variant="outlined"
               />
             </Grid>
-            <Grid xs={12} md={12}>
+            <Grid xs={12} md={6}>
               <label>email*</label>
               <TextField
                 required
@@ -80,7 +101,7 @@ function ClientOnboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={12}>
+            <Grid xs={12} md={6}>
               <label>Phone no.*</label>
               <TextField
                 required
@@ -99,7 +120,7 @@ function ClientOnboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={12}>
+            <Grid xs={12} md={6}>
               <label>Location*</label>
               <TextField
               required
@@ -117,7 +138,7 @@ function ClientOnboarding() {
             </Grid>
             {/* website */}
 
-            <Grid xs={12} md={12}>
+            <Grid xs={12} md={6}>
               <label>Website</label>
               <TextField
                 value={clientInfo.website}
@@ -137,7 +158,7 @@ function ClientOnboarding() {
               />
             </Grid>
             {/* //company */}
-            <Grid xs={12} md={12}>
+            <Grid xs={12} md={6}>
               <label>Company</label>
               <TextField
                 value={clientInfo.company}

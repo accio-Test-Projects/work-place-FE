@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Grid, Box, Button } from "@mui/material";
+import { TextField, Grid, Box } from "@mui/material";
+import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -26,7 +27,6 @@ const MenuProps = {
 };
 
 function CandidateONboarding() {
-
   const theme = useTheme();
   const [candidateInfo, setCandidateInfo] = React.useState({
     name: "",
@@ -62,40 +62,61 @@ function CandidateONboarding() {
   };
 
   const submitInfo = async (e) => {
-    let userInfo=JSON.parse(localStorage.getItem("user"));
-    let userId=userInfo.uid;
+    let userInfo = JSON.parse(localStorage.getItem("user"));
+    let userId = userInfo.uid;
     e.preventDefault();
-    alert('submit')
+    alert(`Hey ${candidateInfo.name}, Your information saved successfully !!`);
     console.log(candidateInfo);
     try {
       const docRef = await addDoc(collection(db, "usersData"), {
         ...candidateInfo,
-        userId:userId
+        userId: userId,
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+
+   setCandidateInfo({
+      name: "",
+      email: "",
+      phone: "",
+      skills: [],
+      domain: [],
+      socialMedia: {
+        linkedIn: "",
+        github: "",
+        twitter: "",
+        instagram: "",
+      },
+    });
   };
   return (
     <div
       style={{
-        backgroundColor: "#F2F2F2",
+        backgroundColor: "#dfdfdf",
         minHeight: "100vh",
+        display: "grid",
+        placeItems: "center",
       }}
     >
       <form onSubmit={(e) => submitInfo(e)}>
         <div
           style={{
             maxWidth: "1100px",
-            margin: "auto",
-            background: "#fff",
+            margin: "50px 20px 0 20px ",
             padding: "20px",
+            backgroundColor: "rgba( 255, 255, 255, 0.2 )",
+            boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+            borderRadius: "10px",
+            border: "1px solid rgba( 255, 255, 255, 0.18 )",
           }}
         >
-          <Grid container spacing={1}>
-            <Grid xs={12} md={6}>
-              <label>Name*</label>
+          <Grid container columnSpacing={2} rowSpacing={4}>
+            <Grid item xs={12} md={6}>
+              <label>
+                Name<span style={{ color: "red" }}>*</span>
+              </label>
               <TextField
                 required
                 value={candidateInfo.name}
@@ -110,8 +131,10 @@ function CandidateONboarding() {
                 variant="outlined"
               />
             </Grid>
-            <Grid xs={12} md={6}>
-              <label>email*</label>
+            <Grid item xs={12} md={6}>
+              <label>
+                email<span style={{ color: "red" }}>*</span>
+              </label>
               <TextField
                 required
                 type="email"
@@ -128,8 +151,10 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={6}>
-              <label>Phone no.*</label>
+            <Grid item xs={12} md={6}>
+              <label>
+                Phone no.<span style={{ color: "red" }}>*</span>
+              </label>
               <TextField
                 required
                 type="number"
@@ -147,7 +172,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={12}>
+            <Grid item xs={12} md={8}>
               <label>Education</label>
               <TextField
                 value={candidateInfo.education}
@@ -163,7 +188,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={12}>
+            <Grid item xs={12} md={8}>
               <label>Experience</label>
               <TextField
                 value={candidateInfo.experience}
@@ -179,7 +204,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>linkedIn</label>
               <TextField
                 value={candidateInfo.socialMedia.linkedIn}
@@ -200,7 +225,7 @@ function CandidateONboarding() {
                 variant="outlined"
               />
             </Grid>
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={5}>
               <label>Twitter</label>
               <TextField
                 value={candidateInfo.socialMedia.twitter}
@@ -222,7 +247,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>Github</label>
               <TextField
                 value={candidateInfo.socialMedia.github}
@@ -240,7 +265,7 @@ function CandidateONboarding() {
                 variant="outlined"
               />
             </Grid>
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={5}>
               <label>Instagram</label>
               <TextField
                 value={candidateInfo.socialMedia.instagram}
@@ -262,14 +287,15 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={6}>
-              <la>Tags*</la>
+            <Grid item xs={12} md={6}>
+              <la>
+                Tags<span style={{ color: "red" }}>*</span>
+              </la>
               <FormControl required sx={{ width: "100%" }}>
                 <InputLabel id="demo-multiple-checkbox-label">
                   Select
                 </InputLabel>
                 <Select
-                  fullWidth
                   labelId="demo-multiple-checkbox-label"
                   id="demo-multiple-checkbox"
                   multiple
@@ -290,14 +316,16 @@ function CandidateONboarding() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid xs={12} md={6}>
-              <la>intrested Domains*</la>
+            <Grid item xs={12} md={6}>
+              <la>
+                interested Domains<span style={{ color: "red" }}>*</span>
+              </la>
               <FormControl fullWidth required sx={{ minWidth: "100%" }}>
                 <InputLabel id="demo-simple-select-required-label">
                   Select
                 </InputLabel>
                 <Select
-                  fullWidth
+                  sx={{ width: "85%" }}
                   labelId="demo-simple-select-required-label"
                   id="demo-simple-select-required"
                   value={candidateInfo.domain}
@@ -316,7 +344,13 @@ function CandidateONboarding() {
             </Grid>
           </Grid>
         </div>
-        <Button type="submit">Submit</Button>
+        <Button
+          variant="contained"
+          type="submit"
+          sx={{ m: 4, ml: 2, boxShadow: " 2px 4px 10px 2px #4b4b4b" }}
+        >
+          Submit
+        </Button>
       </form>
     </div>
   );

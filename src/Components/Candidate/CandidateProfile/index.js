@@ -46,18 +46,22 @@ function CandidateProfile() {
     <div>
       {candidateData ? (
         <div>
-          <Grid container spacing={8} justifyContent="center">
-            <Grid item xs={2} md={2}>
-              <Button onClick={saveProfile}>
+          <Grid style = {{width:'92%'}} container spacing={8} justifyContent="right">
+            <Grid style = {{marginRight:"20px"}} item xs={1} md={1}>
+              <Button style={{height: "35px", background: '#26D7AB', color: "white" }} onClick={saveProfile}>
                 {editState ? "save" : "Edit"}
               </Button>
             </Grid>
             <Grid item xs={2} md={2}>
-              <Button>Logout</Button>
+              <Button style={{ height: "35px", border: "1px solid #26D7AB", color: "#26D7AB" }}>
+                <svg style={{width:"20px", marginRight:'5px'}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" />
+              </svg>
+                Logout</Button>
             </Grid>
           </Grid>
-          <Grid container columnSpacing={2} rowSpacing={4}>
-            <Grid item xs={12} md={6}>
+          <Grid style = {{ width:"70%", margin:'auto'}} container columnSpacing={2} rowSpacing={4}>
+            <Grid item xs={12} md={12}>
               <label>
                 Name<span style={{ color: "red" }}>*</span>
               </label>
@@ -78,7 +82,7 @@ function CandidateProfile() {
             </Grid>
             <Grid item xs={12} md={6}>
               <label>
-                email<span style={{ color: "red" }}>*</span>
+                Email<span style={{ color: "red" }}>*</span>
               </label>
               <TextField
                 disabled={!editState}
@@ -119,7 +123,7 @@ function CandidateProfile() {
               />
             </Grid>
 
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={6}>
               <label>Education</label>
               <TextField
                 disabled={!editState}
@@ -136,7 +140,7 @@ function CandidateProfile() {
               />
             </Grid>
 
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={6}>
               <label>Experience</label>
               <TextField
                 disabled={!editState}
@@ -154,7 +158,7 @@ function CandidateProfile() {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <label>linkedIn</label>
+              <label>LinkedIn</label>
               <TextField
                 disabled={!editState}
                 value={candidateData.socialMedia.linkedIn}
@@ -175,7 +179,7 @@ function CandidateProfile() {
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={6}>
               <label>Twitter</label>
               <TextField
                 disabled={!editState}
@@ -217,7 +221,7 @@ function CandidateProfile() {
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={6}>
               <label>Instagram</label>
               <TextField
                 disabled={!editState}

@@ -1,52 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { TextField, Grid, Box, Button } from "@mui/material";
-import { addDoc, setDoc, doc } from "firebase/firestore";
+import React, { useEffect, useState,useNavigate } from "react";
+import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
-import { useNavigate } from "react-router-dom";
-
-function ClientOnboarding() {
-  const navigate = useNavigate();
-  const [clientInfo, setClientInfo] = React.useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    location: "",
-    website: "",
-  });
-
-  const submitInfo = async (e) => {
-    let userInfo = JSON.parse(localStorage.getItem("user"));
-    let userId = userInfo.uid;
-    e.preventDefault();
-    console.log(clientInfo);
-    try {
-      
-      const docRef = await setDoc(doc(db, "usersData",userId), {
-          ...clientInfo,
-          userId: userId,
-          step:2,
-          user_type:"client"
-        })
-     
-        navigate('/client/profile')
-      } catch (e) {
-        alert('Error occored')
-        console.error("Error adding document: ", e);
+import { TextField, Grid, Box, Button } from "@mui/material";
+function ClientProfile() {
+    const [clientData, setClientData] = useState(null);
+    const [editState, setEditState] = useState(false);
+    let user = JSON.parse(localStorage.getItem("user"));
+    let userId = user.uid;
+    async function getProfile() {
+      try {
+        const docRef = doc(db, "usersData", userId);
+        const docData = await getDoc(docRef);
+        if (docData.exists()) {
+          console.log("Document data:", docData.data());
+          setClientData({ ...docData.data() });
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      } catch (err) {
+        console.log(err);
       }
-    
-    setClientInfo({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      location: "",
-      website: "",
-    });
-  };
-
-
+    }
+  
+    useEffect(() => {
+      getProfile();
+    }, []);
+  
+    const saveProfile = async (e) => {
+      if (editState) {
+        e.preventDefault()
+        try {
+          await setDoc(doc(db, "usersData", userId), {
+            ...clientData,
+          });
+          alert('Profile Updated')
+        } catch (e) {
+          alert("Error occored");
+          console.error("Error adding document: ", e);
+        }
+      }
+      setEditState(!editState);
+    };
+  
   return (
+    <div>
+    {clientData ? (
     <div
     style={{
       display:"flex",
@@ -56,12 +55,17 @@ function ClientOnboarding() {
       minHeight: "100vh",
     }}
     >
-      <h1 style={{
-        display:"flex",
-        justifyContent: "center",
-
-      }}>clientInfo</h1>
-      <form onSubmit={(e) => submitInfo(e)}>
+      <Grid container spacing={8} justifyContent="center">
+            <Grid item xs={2} md={2}>
+              <Button onClick={saveProfile}>
+                {editState ? "save" : "Edit"}
+              </Button>
+            </Grid>
+            <Grid item xs={2} md={2}>
+              <Button>Logout</Button>
+            </Grid>
+          </Grid>
+      <form>
         <div
           style={{
             maxWidth: "900px",
@@ -71,13 +75,14 @@ function ClientOnboarding() {
           }}
         >
           <Grid container spacing={3}>
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>Name*</label>
               <TextField
+              disabled={!editState}
                 required
-                value={clientInfo.name}
+                value={clientData.name}
                 onChange={(e) => {
-                  setClientInfo((p) => {
+                  setClientData((p) => {
                     return { ...p, name: e.target.value };
                   });
                 }}
@@ -87,14 +92,15 @@ function ClientOnboarding() {
                 variant="outlined"
               />
             </Grid>
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>email*</label>
               <TextField
+              disabled={!editState}
                 required
                 type="email"
-                value={clientInfo.email}
+                value={clientData.email}
                 onChange={(e) => {
-                  setClientInfo((p) => {
+                  setClientData((p) => {
                     return { ...p, email: e.target.value };
                   });
                 }}
@@ -105,15 +111,16 @@ function ClientOnboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>Phone no.*</label>
               <TextField
+              disabled={!editState}
                 required
                 type="number"
                 inputProps={{ maxLength: 10 }}
-                value={clientInfo.phone}
+                value={clientData.phone}
                 onChange={(e) => {
-                  setClientInfo((p) => {
+                  setClientData((p) => {
                     return { ...p, phone: e.target.value };
                   });
                 }}
@@ -124,13 +131,14 @@ function ClientOnboarding() {
               />
             </Grid>
 
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>Location*</label>
               <TextField
+              disabled={!editState}
               required
-                value={clientInfo.location}
+                value={clientData.location}
                 onChange={(e) => {
-                  setClientInfo((p) => {
+                  setClientData((p) => {
                     return { ...p, location: e.target.value };
                   });
                 }}
@@ -142,12 +150,13 @@ function ClientOnboarding() {
             </Grid>
             {/* website */}
 
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>Website</label>
               <TextField
-                value={clientInfo.website}
+              disabled={!editState}
+                value={clientData.website}
                 onChange={(e) => {
-                  setClientInfo((p) => {
+                  setClientData((p) => {
                     return {
                       ...p,
                       website: e.target.value,
@@ -162,12 +171,13 @@ function ClientOnboarding() {
               />
             </Grid>
             {/* //company */}
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <label>Company</label>
               <TextField
-                value={clientInfo.company}
+              disabled={!editState}
+                value={clientData.company}
                 onChange={(e) => {
-                  setClientInfo((p) => {
+                  setClientData((p) => {
                     return { ...p, company: e.target.value };
                   });
                 }}
@@ -185,20 +195,13 @@ function ClientOnboarding() {
            
           </Grid>
         </div>
-        <Button type="submit">Submit</Button>
       </form>
     </div>
-  )
+    ) : (
+        <div>Loading</div>
+      )}
+    </div>
+  );
 }
 
-export default ClientOnboarding
-
-//neame*
-//email*
-//phone*
-//location*
-//company
-//website
-
-
-
+export default ClientProfile;

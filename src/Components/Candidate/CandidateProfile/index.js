@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
 import { TextField, Grid, Box, Button } from "@mui/material";
+import { Navigate, useNavigate } from "react-router-dom";
+
 function CandidateProfile() {
   const [candidateData, setCandidateData] = useState(null);
   const [editState, setEditState] = useState(false);
@@ -42,6 +44,19 @@ function CandidateProfile() {
     }
     setEditState(!editState);
   };
+  const navigate = useNavigate();
+  const reRoute = () => {
+    navigate("/");
+  };
+  const logoutProfile = ()=>{
+    alert('Are you want to Logout?')
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    // localStorage.removeItem("real key");
+    
+    reRoute();
+
+  }
   return (
     <div>
       {candidateData ? (
@@ -53,7 +68,7 @@ function CandidateProfile() {
               </Button>
             </Grid>
             <Grid item xs={2} md={2}>
-              <Button>Logout</Button>
+              <Button onClick={logoutProfile}>Logout</Button>
             </Grid>
           </Grid>
           <Grid container columnSpacing={2} rowSpacing={4}>

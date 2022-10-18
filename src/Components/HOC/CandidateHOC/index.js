@@ -19,6 +19,7 @@ const routes = [
     name: "Applications",
     path: "/candidate/applications",
   },
+  
 ];
 function CandidateHOC({ children }) {
   const navigate = useNavigate();

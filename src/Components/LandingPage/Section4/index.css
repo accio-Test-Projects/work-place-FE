@@ -33,36 +33,35 @@
 }
 
 .sub-text {
-    /* font-family: 'Roboto'; */
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    line-height: 21px;
-    width: 90%;
+    /* line-height: 21px; */
+    width: 85%;
+    margin-left: 15px;
+    margin-top: 20px;
     color: #FFFFFF;
 
 }
 
 .section4-main button {
     color: #4540DB;
+    background-color: white;
     width: 186px;
-    height: 40px;
-    font-size: 15px;
+    /* height: 40px; */
+    font-size: 17px;
     border-radius: 20px;
     border: none;
     font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    left: 50%;
-    /* -ms-transform: translate(50%, 50%); */
-    transform: translate(25%, -15%);
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 15px;
+    /* padding: 5px; */
 }
 
 .section4-main svg {
-    height: 14px;
-    margin-right: 3px;
+    height: 17px;
+    /* margin-right: 1px; */
     font-weight: bold;
 }
 

@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 function ClientOnboarding() {
   const navigate = useNavigate();
+  const loggedInUser=JSON.parse(localStorage.getItem('user'))
   const [clientInfo, setClientInfo] = React.useState({
     name: "",
-    email: "",
+    email: loggedInUser.email,
     phone: "",
     company: "",
     location: "",
@@ -90,6 +91,7 @@ function ClientOnboarding() {
             <Grid xs={12} md={6}>
               <label>email*</label>
               <TextField
+                disabled
                 required
                 type="email"
                 value={clientInfo.email}

@@ -14,8 +14,8 @@ import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
 import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
+import {domains,skillsList} from '../../../constants/index'
 import { useNavigate } from "react-router-dom";
-const skillsList = ["react", "Node", "Full stack", "Aws"];
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -29,9 +29,10 @@ const MenuProps = {
 
 function CandidateONboarding() {
   let navigate = useNavigate();
+  const loggedInUser = JSON.parse(localStorage.getItem("user"));
   const [candidateInfo, setCandidateInfo] = React.useState({
     name: "",
-    email: "",
+    email: loggedInUser.email,
     phone: "",
     skills: [],
     domain: [],
@@ -68,20 +69,20 @@ function CandidateONboarding() {
     e.preventDefault();
     console.log(candidateInfo);
     try {
-      const docRef = await setDoc(doc(db, "usersData",userId), { 
-          ...candidateInfo,
-          userId: userId,
-          step:200,
-          user_type:"candidate"
-        })
-     
-      navigate('/candidate/profile')
+      const docRef = await setDoc(doc(db, "usersData", userId), {
+        ...candidateInfo,
+        userId: userId,
+        step: 200,
+        user_type: "candidate",
+      });
+
+      navigate("/candidate/profile");
     } catch (e) {
-      alert('Error occored')
+      alert("Error occored");
       console.error("Error adding document: ", e);
     }
 
-   setCandidateInfo({
+    setCandidateInfo({
       name: "",
       email: "",
       phone: "",
@@ -140,6 +141,7 @@ function CandidateONboarding() {
                 email<span style={{ color: "red" }}>*</span>
               </label>
               <TextField
+              disabled
                 required
                 type="email"
                 value={candidateInfo.email}

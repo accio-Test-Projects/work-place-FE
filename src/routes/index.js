@@ -12,7 +12,7 @@ import CandidateProfile from "../Components/Candidate/CandidateProfile";
 import CandidateHOC from "../Components/HOC/CandidateHOC";
 import ClientProfile from "../Components/Client/ClientProfile";
 import ClientHOC from "../Components/HOC/ClientHOC";
-
+import PostJob from "../Components/Client/PostJob";
 function Navs() {
 
   return (
@@ -46,6 +46,14 @@ function Navs() {
                 <ClientProfile />
               </ClientHOC>
             }
+          />
+          <Route
+          path='/client/Jobs'
+          element={
+            <ClientHOC>
+              <PostJob />
+            </ClientHOC>
+          }
           />
 
           <Route path="/signIn/client" element={<Signup type={"client"} />} />

@@ -54,6 +54,8 @@ const Navbar = () => {
       goToCandidateSignIn();
     }
   };
+
+
   return (
     
     <AppBar position="static" style={{ background: '#ffffff', "font-weight": 900}} >
@@ -139,8 +141,8 @@ const Navbar = () => {
             ))}
           </Box>
 
-          {/* <Box sx={{ display:'flex', width: { xs: "40%", md: "15%",}}}>
-            <Button style={{textTransform: "none", fontWeight: "520", color: "black"}}>Log in</Button>
+          {/* <Box  sx={{ display:'flex', width: { xs: "40%", md: "15%",}, mr:'8px'}}>
+            <Button className="loginbtn" style={{textTransform: "none", fontWeight: "520", color: "black",borderRadius:"10px"}} >Log in</Button>
             <Button style={{background:"blue", color:"white", "font-size": "12px", "margin-left": "12px",  textTransform: "none", "border-radius": "5px", "padding": "5px 10px 5px 10px" }}>Register Now</Button>
           </Box> */}
         </Toolbar>

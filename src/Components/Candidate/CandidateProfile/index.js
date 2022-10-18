@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
 import { TextField, Grid, Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 function CandidateProfile() {
   const [candidateData, setCandidateData] = useState(null);
   const [editState, setEditState] = useState(false);
+  const [token,setToken] = React.useState(localStorage.getItem("token"));
+
   let user = JSON.parse(localStorage.getItem("user"));
   let userId = user.uid;
+  const navigate = useNavigate();
   async function getProfile() {
     try {
       const docRef = doc(db, "usersData", userId);
@@ -42,6 +46,14 @@ function CandidateProfile() {
     }
     setEditState(!editState);
   };
+
+  const handleLogoutClick = ()=>{
+    console.log("Logout");
+    localStorage.setItem("token","");
+    setToken("");
+    navigate("/");
+  }
+
   return (
     <div>
       {candidateData ? (
@@ -53,7 +65,7 @@ function CandidateProfile() {
               </Button>
             </Grid>
             <Grid item xs={2} md={2}>
-              <Button>Logout</Button>
+              <Button className="logoutbtn" onClick={handleLogoutClick}>Logout</Button>
             </Grid>
           </Grid>
           <Grid container columnSpacing={2} rowSpacing={4}>

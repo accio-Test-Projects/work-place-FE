@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import CandidateProfile from "../Components/Candidate/CandidateProfile";
 import CandidateHOC from "../Components/HOC/CandidateHOC";
+import ClientProfile from "../Components/Client/ClientProfile";
+import ClientHOC from "../Components/HOC/ClientHOC";
 
 function Navs() {
 
@@ -35,6 +37,14 @@ function Navs() {
               <CandidateHOC>
                 <CandidateProfile />
               </CandidateHOC>
+            }
+          />
+          <Route
+            path="/client/profile"
+            element={
+              <ClientHOC>
+                <ClientProfile />
+              </ClientHOC>
             }
           />
 

@@ -52,6 +52,7 @@ function CandidateProfile() {
     localStorage.setItem("token","");
     auth.signOut();
     setToken("");
+    alert("You are Logout successfuly.");
     navigate("/");
   }
 

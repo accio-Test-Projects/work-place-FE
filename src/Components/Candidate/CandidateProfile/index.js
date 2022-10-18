@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getDoc, doc, setDoc } from "firebase/firestore";
-import { db } from "../../../config/firebaseInitisize";
+import { auth, db } from "../../../config/firebaseInitisize";
 import { TextField, Grid, Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 function CandidateProfile() {
@@ -50,6 +50,7 @@ function CandidateProfile() {
   const handleLogoutClick = ()=>{
     console.log("Logout");
     localStorage.setItem("token","");
+    auth.signOut();
     setToken("");
     navigate("/");
   }

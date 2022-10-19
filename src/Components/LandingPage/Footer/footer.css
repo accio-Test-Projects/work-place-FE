@@ -30,7 +30,7 @@ input:focus{
     border: none;
     outline: none;
 }
-button{
+.footerBtn{
     width: 119px;
     height: 50px;
     border-radius: 20px;

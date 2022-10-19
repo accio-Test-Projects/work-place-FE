@@ -12,7 +12,7 @@ import {
   Checkbox,
   OutlinedInput,
 } from "@mui/material";
-import  uuid  from 'uuidv4';
+import uuid from 'uuidv4';
 import { setDoc, addDoc, collection, doc } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
 import { domainList, skillsList } from "../../../constants/";
@@ -82,7 +82,7 @@ function JobForm() {
   return (
     <div style={{ border: "2px solid red" }}>
       <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
+        <Grid style={{ margin: "20px 20px 20px 20px" }} container spacing={2} >
           <div
             style={{
               maxWidth: "1100px",

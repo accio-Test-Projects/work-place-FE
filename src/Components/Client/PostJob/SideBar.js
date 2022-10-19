@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { collection, query, where, getDocs,onSnapshot } from "firebase/firestore";
+import { collection, query, where, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
+
 function SideBar() {
+
+  const [matches, setMatches] = useState(
+    window.matchMedia("(min-width: 768px)").matches
+  )
+
+  useEffect(() => {
+    window
+      .matchMedia("(min-width: 360px)")
+      .addEventListener('change', e => setMatches(e.matches));
+  }, []);
+
+
   const [allJobs, setAllJobs] = useState(null);
   let loggedInUser = JSON.parse(localStorage.getItem("user"));
   let clientId = loggedInUser.uid;
@@ -21,24 +34,35 @@ function SideBar() {
     fetchAllJobs();
   }, []);
   return (
+
     <div>
-      {allJobs && allJobs.length === 0 ? (
-        <div>no data</div>
-      ) : allJobs && allJobs.length > 0 ? (
-        <div>
-          {allJobs.map((job) => {
-            return (
-              <div>
-                <div>{job.title}</div>
-                <div>{job.description}</div>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <div>loading</div>
-      )}
+      {
+        matches && (<div >
+          {allJobs && allJobs.length === 0 ? (
+            <div>no data</div>
+          ) : allJobs && allJobs.length > 0 ? (
+            <div>
+              {allJobs.map((job) => {
+                return (
+                  <div>
+                    <div>{job.title}</div>
+                    <div>{job.description}</div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div>loading</div>
+          )}
+        </div >)
+      }
+
+      {
+        !matches && (<div></div>)
+      }
+
     </div>
+
   );
 }
 

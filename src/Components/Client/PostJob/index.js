@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Box } from "@mui/material";
 import JobForm from "./JobForm";
 import SideBar from "./SideBar";
 
 function PostJob() {
   const [mobileStep, setMobileStep] = useState(true);
   return (
-    <div>
+    <div >
       <Grid container spacing={2}>
         <Grid
           sx={{
@@ -32,6 +32,10 @@ function PostJob() {
         </Grid>
         <Button onClick={() => setMobileStep((p) => !p)}>shift</Button>
       </Grid>
+      <div>
+        {/* {matches } */}
+        {/* <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span> */}
+      </div>
     </div>
   );
 }

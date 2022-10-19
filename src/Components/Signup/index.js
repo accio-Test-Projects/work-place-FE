@@ -11,7 +11,6 @@ function Signup({ type }) {
   const provider = new GoogleAuthProvider();
   console.log(type);
   const signIn = () => {
-    console.log("Sign In");
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log(result, "result");
@@ -21,7 +20,7 @@ function Signup({ type }) {
         // The signed-in user info.
         const user = result.user;
         console.log(user, "token", token);
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));  //store in Local storage
         localStorage.setItem("token", token);
 
         if (type === "client") {

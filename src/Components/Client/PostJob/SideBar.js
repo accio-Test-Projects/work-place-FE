@@ -5,10 +5,10 @@ function SideBar() {
   const [allJobs, setAllJobs] = useState(null);
   let loggedInUser = JSON.parse(localStorage.getItem("user"));
   let clientId = loggedInUser.uid;
-  const fetchAllJobs = async () => {
+  const fetchAllJobs =  () => {
     const q = query(collection(db, "jobs"), where("client_id", "==", clientId));
 
-    const querySnapshot = await getDocs(q);
+    const querySnapshot =  onSnapshot(q);
     let jobs = [];
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots

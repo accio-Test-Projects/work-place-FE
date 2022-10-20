@@ -76,7 +76,7 @@ function JobForm() {
       job_id,
       client_id: uid,
     });
-    console.log("Document written with ID: ", docRef.id);
+    console.log("Document written with ID: ", docRef?.id);
   };
 
   return (

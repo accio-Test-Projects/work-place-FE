@@ -71,12 +71,16 @@ function JobForm() {
     const { uid } = loggedInUser;
     const job_id = uuid();
     console.log(jobData);
+    try{
     const docRef = await setDoc(doc(db, "jobs", job_id), {
       ...jobData,
       job_id,
       client_id: uid,
     });
-    console.log("Document written with ID: ", docRef?.id);
+  }
+  catch(e){
+    console.log('error in posting application',e)
+  }
   };
 
   return (

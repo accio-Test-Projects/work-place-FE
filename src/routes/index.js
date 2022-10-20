@@ -3,18 +3,16 @@ import LandingPage from "../Components/LandingPage";
 import Signup from "../Components/Signup";
 import ClientOnboarding from "../Components/OnboardingForm/ClientOnboarding";
 import CandidateONboarding from "../Components/OnboardingForm/CandidateOnboarding";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CandidateProfile from "../Components/Candidate/CandidateProfile";
 import CandidateHOC from "../Components/HOC/CandidateHOC";
 import ClientProfile from "../Components/Client/ClientProfile";
 import ClientHOC from "../Components/HOC/ClientHOC";
 import PostJob from "../Components/Client/PostJob";
+import CandidateJobs from "../Components/Candidate/CandidateJobs";
+import CandidateApplication from "../Components/Candidate/CandidateApplication";
+import CandidateConversation from "../Components/Candidate/CandidateConversation";
 function Navs() {
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Router>
@@ -40,6 +38,32 @@ function Navs() {
             }
           />
           <Route
+            path="candidate/jobs"
+            element={
+              <CandidateHOC>
+                <CandidateJobs />
+              </CandidateHOC>
+            }
+          />
+
+          <Route
+            path="candidate/applications"
+            element={
+              <CandidateHOC>
+                <CandidateApplication />
+              </CandidateHOC>
+            }
+          />
+          <Route
+            path="candidate/conversation"
+            element={
+              <CandidateHOC>
+                <CandidateConversation />
+              </CandidateHOC>
+            }
+          />
+
+          <Route
             path="/client/profile"
             element={
               <ClientHOC>
@@ -48,12 +72,12 @@ function Navs() {
             }
           />
           <Route
-          path='/client/Jobs'
-          element={
-            <ClientHOC>
-              <PostJob />
-            </ClientHOC>
-          }
+            path="/client/Jobs"
+            element={
+              <ClientHOC>
+                <PostJob />
+              </ClientHOC>
+            }
           />
 
           <Route path="/signIn/client" element={<Signup type={"client"} />} />

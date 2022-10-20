@@ -99,10 +99,9 @@ function CandidateONboarding() {
   return (
     <div
       style={{
-        backgroundColor: "#dfdfdf",
+        backgroundColor: "#e5e5e5",
         minHeight: "100vh",
-        display: "grid",
-        placeItems: "center",
+        paddingTop:"50px"
       }}
     >
       <form onSubmit={(e) => submitInfo(e)}>
@@ -111,17 +110,25 @@ function CandidateONboarding() {
             maxWidth: "1100px",
             margin: "50px 20px 0 20px ",
             padding: "20px",
-            backgroundColor: "rgba( 255, 255, 255, 0.2 )",
-            boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-            borderRadius: "10px",
-            border: "1px solid rgba( 255, 255, 255, 0.18 )",
+            paddingTop:"50px",
+            borderRadius:'20px'
           }}
         >
-          <Grid container columnSpacing={2} rowSpacing={4}>
+        <Grid container 
+              spacing={3}
+              maxWidth="80%"
+              p={4}
+              sx={{
+                backgroundColor: "#FFFFFF",
+                boxShadow: "0px 0px 15px #DCD7D7",
+                margin: "auto",
+                fontSize: "15px"
+              }}
+          >
+
+            {/* ====================================================================================== */}
             <Grid item xs={12} md={6}>
-              <label>
-                Name<span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Name*</label>
               <TextField
                 required
                 value={candidateInfo.name}
@@ -178,7 +185,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={12}>
               <label>Education</label>
               <TextField
                 value={candidateInfo.education}
@@ -194,7 +201,7 @@ function CandidateONboarding() {
               />
             </Grid>
 
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={12}>
               <label>Experience</label>
               <TextField
                 value={candidateInfo.experience}
@@ -231,7 +238,7 @@ function CandidateONboarding() {
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={6}>
               <label>Twitter</label>
               <TextField
                 value={candidateInfo.socialMedia.twitter}
@@ -271,7 +278,7 @@ function CandidateONboarding() {
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={6}>
               <label>Instagram</label>
               <TextField
                 value={candidateInfo.socialMedia.instagram}
@@ -348,15 +355,24 @@ function CandidateONboarding() {
                 <FormHelperText>Required</FormHelperText>
               </FormControl>
             </Grid>
+
+
+            {/* --------------------------------------------------- */}
+
+            <Grid item lg={12}>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="small"
+                type="submit"
+                sx={{ float: "right",width:"150px"}}
+              >
+                Submit
+              </Button>
+            </Grid>
+            {/* ---------------------------------------------------------- */}
           </Grid>
         </div>
-        <Button
-          variant="contained"
-          type="submit"
-          sx={{ m: 4, ml: 2, boxShadow: " 2px 4px 10px 2px #4b4b4b" }}
-        >
-          Submit
-        </Button>
       </form>
     </div>
   );

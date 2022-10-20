@@ -36,7 +36,7 @@ function CandidateProfile() {
         await setDoc(doc(db, "usersData", userId), {
           ...candidateData,
         });
-        alert('Profile Updated')
+        alert("Profile Updated");
       } catch (e) {
         alert("Error occored");
         console.error("Error adding document: ", e);
@@ -48,15 +48,14 @@ function CandidateProfile() {
   const reRoute = () => {
     navigate("/");
   };
-  const logoutProfile = ()=>{
-    alert('Are you want to Logout?')
+  const logoutProfile = () => {
+    alert("Are you want to Logout?");
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     // localStorage.removeItem("real key");
-    
-    reRoute();
 
-  }
+    reRoute();
+  };
   return (
     <div>
       {candidateData ? (
@@ -134,7 +133,7 @@ function CandidateProfile() {
               />
             </Grid>
 
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={6}>
               <label>Education</label>
               <TextField
                 disabled={!editState}
@@ -151,7 +150,7 @@ function CandidateProfile() {
               />
             </Grid>
 
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={6}>
               <label>Experience</label>
               <TextField
                 disabled={!editState}
@@ -190,7 +189,7 @@ function CandidateProfile() {
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={6}>
               <label>Twitter</label>
               <TextField
                 disabled={!editState}
@@ -232,7 +231,7 @@ function CandidateProfile() {
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={6}>
               <label>Instagram</label>
               <TextField
                 disabled={!editState}

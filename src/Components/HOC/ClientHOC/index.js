@@ -8,8 +8,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import PersonIcon from '@mui/icons-material/Person';
-
-
+import SideBar from "../../Client/PostJob/SideBar";
 const routes = [
   {
     name: "Jobs",
@@ -28,7 +27,7 @@ const routes = [
     path: "/client/applicants",
   },
 ];
-function ClientHOC({ children }) {
+function ClientHOC({ children, SideBar }) {
 
   const [value, setValue] = React.useState(0);
   const [matches, setMatches] = useState(
@@ -71,7 +70,7 @@ function ClientHOC({ children }) {
 
       </div>
       {children}
-      <div style={{display:"static"}}>
+      <div>
         {
           !matches && (<Box sx={{ minWidth: "360px" }}>
             <BottomNavigation

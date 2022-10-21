@@ -8,6 +8,7 @@ import {
   setDoc,
   deleteDoc,
 } from "firebase/firestore";
+import uuid from "uuidv4";
 import { db } from "../../../config/firebaseInitisize";
 import ApplicationTable from "../../common/ApplicationTable";
 function CLientApplicants() {
@@ -53,21 +54,33 @@ function CLientApplicants() {
     } else if (action === "accept") {
       try {
         const one_to_one_id = `${Applicationdata.application_id}_${Applicationdata.client_id}_${Applicationdata.candidate_id}`;
-        console.log("Applicationdata", one_to_one_id);
+        const message = `hey ${Applicationdata.candidate_name}, we have accepted your application for the job ${Applicationdata.job_title}`;
         await setDoc(doc(db, "conversations", one_to_one_id), {
           client_id: Applicationdata.client_id,
           candidate_name: Applicationdata.candidate_name,
+          client_name: Applicationdata.client_name,
           candidate_id: Applicationdata.candidate_id,
           job_id: Applicationdata.job_id,
           application_id: Applicationdata.application_id,
-          last_message: `hey ${Applicationdata.candidate_name}, we have accepted your application for the job ${Applicationdata.job_title}`,
+          last_message: message,
           one_to_one_id, //application_id+client_id+candidate_id
         });
 
-        await setDoc(doc(db, "applications", Applicationdata.application_id), {
-          interest_showen:'accepted'
-        }, { merge: true });
+        await setDoc(doc(db, "one-to-one", uuid()), {
+          message_id: uuid(),
+          sender_id: Applicationdata.client_id,
+          one_to_one_id,
+          createdAt: new Date().getTime(),
+          message,
+        });
 
+        await setDoc(
+          doc(db, "applications", Applicationdata.application_id),
+          {
+            interest_showen: "accepted",
+          },
+          { merge: true }
+        );
       } catch (err) {
         console.log(err);
       }

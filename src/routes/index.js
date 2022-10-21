@@ -13,6 +13,7 @@ import CandidateJobs from "../Components/Candidate/CandidateJobs";
 import CandidateApplication from "../Components/Candidate/CandidateApplication";
 import CandidateConversation from "../Components/Candidate/CandidateConversation";
 import CLientApplicants from "../Components/Client/CLientApplicants";
+import ClientConversation from "../Components/Client/ClientConversation";
 function Navs() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -87,6 +88,14 @@ function Navs() {
             element={
               <ClientHOC>
                 <CLientApplicants />
+              </ClientHOC>
+            }
+          />
+          <Route
+            path="/client/conversation"
+            element={
+              <ClientHOC>
+                <ClientConversation />
               </ClientHOC>
             }
           />

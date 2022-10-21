@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { collection, query, where, getDocs,onSnapshot } from "firebase/firestore";
+import "./Sidebar.css"
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
+import Search from "../../../assets/svgFile/search.svg";
+import { Input, TextField, Grid } from "@mui/material";
 function SideBar() {
   const [allJobs, setAllJobs] = useState(null);
   let loggedInUser = JSON.parse(localStorage.getItem("user"));
@@ -21,21 +30,63 @@ function SideBar() {
     fetchAllJobs();
   }, []);
   return (
-    <div>
+    <div className="row">
+      <TextField
+        placeholder="Search title or keywoard"
+        sx={{
+          border: "none",
+          outline: "none",
+          width: "100%",
+
+          "& .css-1q6at85-MuiInputBase-root-MuiOutlinedInput-root": {
+            "& fieldset": {
+              border: "none",
+            },
+          },
+        }}
+        size="small"
+        id="outlined-basic"
+        variant="outlined"
+        InputProps={{
+          startAdornment: (
+            <img
+              src={Search}
+              alt="Search"
+              style={{
+                marginRight: "10px",
+                maxWidth: "20px",
+                width: { xs: "10%", md: "100%" },
+                maxHeight: "20px",
+                height: { xs: "10%", md: "100%" },
+              }}
+            />
+          ),
+        }}
+      />
+
       {allJobs && allJobs.length === 0 ? (
         <div>no data</div>
       ) : allJobs && allJobs.length > 0 ? (
-        <div>
+        /**=================================== */
+        <div className="column">
           {allJobs.map((job) => {
             return (
-              <div>
-                <div>{job.title}</div>
-                <div>{job.description}</div>
+              <div className="card">
+                
+                <h3>
+                  {job.title}
+                </h3>
+                <p>
+                  {job.description}
+                </p>
+                
               </div>
             );
           })}
         </div>
       ) : (
+        /**=================================== */
+
         <div>loading</div>
       )}
     </div>

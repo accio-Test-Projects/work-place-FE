@@ -14,7 +14,7 @@ function PostJob() {
           }}
           item
           xs={12}
-          sm={4}
+          sm={3}
           md={3}
         >
           <SideBar />
@@ -25,7 +25,7 @@ function PostJob() {
           }}
           item
           xs={12}
-          sm={8}
+          sm={9}
           md={9}
         >
           <JobForm />

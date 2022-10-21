@@ -171,7 +171,7 @@ function CandidateProfile() {
               <label>linkedIn</label>
               <TextField
                 disabled={!editState}
-                value={candidateData.socialMedia.linkedIn}
+                value={candidateData.socialMedia?.linkedIn}
                 onChange={(e) => {
                   setCandidateData((p) => {
                     return {
@@ -193,7 +193,7 @@ function CandidateProfile() {
               <label>Twitter</label>
               <TextField
                 disabled={!editState}
-                value={candidateData.socialMedia.twitter}
+                value={candidateData.socialMedia?.twitter}
                 onChange={(e) => {
                   setCandidateData((p) => {
                     return {
@@ -216,7 +216,7 @@ function CandidateProfile() {
               <label>Github</label>
               <TextField
                 disabled={!editState}
-                value={candidateData.socialMedia.github}
+                value={candidateData.socialMedia?.github}
                 onChange={(e) => {
                   setCandidateData((p) => {
                     return {
@@ -235,7 +235,7 @@ function CandidateProfile() {
               <label>Instagram</label>
               <TextField
                 disabled={!editState}
-                value={candidateData.socialMedia.instagram}
+                value={candidateData.socialMedia?.instagram}
                 onChange={(e) => {
                   setCandidateData((p) => {
                     return {

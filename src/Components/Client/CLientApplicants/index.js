@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
-import { query, where, getDocs, collection } from "firebase/firestore";
+import { query, where, getDocs,doc, collection,deleteDoc } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
 import ApplicationTable from "../../common/ApplicationTable";
-function CandidateApplication() {
+function CLientApplicants() {
   const [applications, setAllApplications] = React.useState(null);
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
-  const candidateId = loggedInUser.uid;
+  const clientId = loggedInUser.uid;
   const fetchAllApplications = async () => {
     try {
       const q = query(
         collection(db, "applications"),
-        where("candidate_id", "==", candidateId)
+        where("client_id", "==", clientId)
       );
 
       const querySnapshot = await getDocs(q);
@@ -28,6 +28,24 @@ function CandidateApplication() {
   useEffect(() => {
     fetchAllApplications();
   }, []);
+
+  const handleAction = async (action,Applicationdata) => {
+    console.log(action,Applicationdata);
+    if(action==='reject'){
+      try{
+      await deleteDoc(doc(db, "applications",Applicationdata.application_id));
+      const filteredApplications = applications.filter((application) => {
+        return application.application_id !== Applicationdata.application_id;
+      })
+      setAllApplications(filteredApplications);
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
+
+  }
+  
   return (
     <div>
       {applications && applications.length === 0 ? (
@@ -35,16 +53,16 @@ function CandidateApplication() {
       ) : applications && applications.length > 0 ? (
         <div>
           <ApplicationTable
-          // columns={["Job Title", "Client Name",'Budget','Status',"date"]}
+            handleAction={handleAction}
+            buttons={true}
             columns={[
+              { label: "Candidate Name", key: "candidate_name" },
               { label: "Job Title", key: "job_title" },
-              { label: "Client Name", key: "client_name" },
               { label: "Budget", key: "project_bugdet" },
               { label: "Status", key: "interest_showen" },
               { label: "date", key: "createdAt" },
             ]}
-          
-          rows={applications}
+            rows={applications}
           />
         </div>
       ) : (
@@ -54,4 +72,4 @@ function CandidateApplication() {
   );
 }
 
-export default CandidateApplication;
+export default CLientApplicants;

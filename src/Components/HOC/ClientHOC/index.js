@@ -36,7 +36,9 @@ function ClientHOC({ children }) {
           );
         })}
       </Grid>
-      {children}
+      <div style={{ margin: "60px auto", maxWidth: "1100px", width: "90%" }}>
+        {children}
+      </div>
     </div>
   );
 }

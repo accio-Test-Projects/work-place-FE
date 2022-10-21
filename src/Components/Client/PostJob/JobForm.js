@@ -76,6 +76,7 @@ function JobForm() {
       ...jobData,
       job_id,
       client_id: uid,
+      client_name: loggedInUser.displayName,
     });
   }
   catch(e){

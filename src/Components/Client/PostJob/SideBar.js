@@ -16,7 +16,7 @@ function SideBar() {
           setAllJobs((prev) => [...prev, change.doc.data()])
         }
       });
-    });
+    }); 
     return unsubscribe;
   };
   

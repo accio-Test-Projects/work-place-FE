@@ -12,13 +12,13 @@ import PostJob from "../Components/Client/PostJob";
 import CandidateJobs from "../Components/Candidate/CandidateJobs";
 import CandidateApplication from "../Components/Candidate/CandidateApplication";
 import CandidateConversation from "../Components/Candidate/CandidateConversation";
+import CLientApplicants from "../Components/Client/CLientApplicants";
 function Navs() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-
           <Route
             path="/signIn/candidate"
             element={<Signup type={"candidate"} />}
@@ -63,6 +63,8 @@ function Navs() {
             }
           />
 
+          <Route path="/signIn/client" element={<Signup type={"client"} />} />
+          <Route path="/onboarding/client" element={<ClientOnboarding />} />
           <Route
             path="/client/profile"
             element={
@@ -80,8 +82,14 @@ function Navs() {
             }
           />
 
-          <Route path="/signIn/client" element={<Signup type={"client"} />} />
-          <Route path="/onboarding/client" element={<ClientOnboarding />} />
+          <Route
+            path="/client/applicants"
+            element={
+              <ClientHOC>
+                <CLientApplicants />
+              </ClientHOC>
+            }
+          />
         </Routes>
       </Router>
     </Suspense>

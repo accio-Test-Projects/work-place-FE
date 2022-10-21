@@ -11,6 +11,7 @@ import {
   FormHelperText,
   Checkbox,
   OutlinedInput,
+  Box,
 } from "@mui/material";
 import  uuid  from 'uuidv4';
 import { setDoc, addDoc, collection, doc } from "firebase/firestore";
@@ -71,33 +72,43 @@ function JobForm() {
     const { uid } = loggedInUser;
     const job_id = uuid();
     console.log(jobData);
-    try{
     const docRef = await setDoc(doc(db, "jobs", job_id), {
       ...jobData,
       job_id,
       client_id: uid,
       client_name: loggedInUser.displayName,
     });
-  }
-  catch(e){
-    console.log('error in posting application',e)
-  }
+    console.log("Document written with ID: ", docRef.id);
   };
 
   return (
-    <div style={{ border: "2px solid red" }}>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
+    <div  
+    style={{
+      backgroundColor: "#e5e5e5",
+      minHeight: "100vh",
+      paddingTop:"50px"
+    }}>
+     <form onSubmit={handleSubmit}>
           <div
             style={{
               maxWidth: "1100px",
-              width: "90%",
-              margin: "auto",
-              background: "#fff",
-              padding: "70px",
+              margin: "50px 20px 0 20px ",
+              padding: "20px",
+              paddingTop: "30px",
+              borderRadius: "20px",
             }}
           >
-            <Grid container spacing={3}>
+       
+            <Grid container spacing={3}
+             maxWidth="90%"
+             p={4}
+             sx={{
+               backgroundColor: "#FFFFFF",
+               boxShadow: "0px 0px 15px #DCD7D7",
+               margin: "auto",
+               fontSize: "15px",
+             }}
+            >
               <Grid item xs={12} md={6}>
                 <label>Title</label>
                 <TextField
@@ -284,9 +295,20 @@ function JobForm() {
                 </FormControl>
               </Grid>
             </Grid>
+            
+            <Box textAlign="center">
+              <Button
+                variant="contained"
+          
+                size="small"
+                type="submit"
+                sx={{ marginTop: "10px", width: "150px" }}
+              >
+                Submit
+              </Button>
+            </Box>
+            
           </div>
-          <Button type="submit">Submit</Button>
-        </Grid>
       </form>
     </div>
   );

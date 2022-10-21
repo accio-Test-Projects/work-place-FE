@@ -14,7 +14,7 @@ import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
 import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
-import {domains,skillsList} from '../../../constants/index'
+import { domains, skillsList } from "../../../constants/index";
 import { useNavigate } from "react-router-dom";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -101,7 +101,7 @@ function CandidateONboarding() {
       style={{
         backgroundColor: "#e5e5e5",
         minHeight: "100vh",
-        paddingTop:"50px"
+        paddingTop: "50px",
       }}
     >
       <form onSubmit={(e) => submitInfo(e)}>
@@ -110,22 +110,22 @@ function CandidateONboarding() {
             maxWidth: "1100px",
             margin: "50px 20px 0 20px ",
             padding: "20px",
-            paddingTop:"50px",
-            borderRadius:'20px'
+            paddingTop: "50px",
+            borderRadius: "20px",
           }}
         >
-        <Grid container 
-              spacing={3}
-              maxWidth="80%"
-              p={4}
-              sx={{
-                backgroundColor: "#FFFFFF",
-                boxShadow: "0px 0px 15px #DCD7D7",
-                margin: "auto",
-                fontSize: "15px"
-              }}
+          <Grid
+            container
+            spacing={3}
+            maxWidth="80%"
+            p={4}
+            sx={{
+              backgroundColor: "#FFFFFF",
+              boxShadow: "0px 0px 15px #DCD7D7",
+              margin: "auto",
+              fontSize: "15px",
+            }}
           >
-
             {/* ====================================================================================== */}
             <Grid item xs={12} md={6}>
               <label>Name*</label>
@@ -148,7 +148,7 @@ function CandidateONboarding() {
                 email<span style={{ color: "red" }}>*</span>
               </label>
               <TextField
-              disabled
+                disabled
                 required
                 type="email"
                 value={candidateInfo.email}
@@ -356,7 +356,6 @@ function CandidateONboarding() {
               </FormControl>
             </Grid>
 
-
             {/* --------------------------------------------------- */}
 
             <Grid item lg={12}>
@@ -365,7 +364,7 @@ function CandidateONboarding() {
                 color="secondary"
                 size="small"
                 type="submit"
-                sx={{ float: "right",width:"150px"}}
+                sx={{ float: "right", width: "150px" }}
               >
                 Submit
               </Button>

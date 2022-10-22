@@ -58,9 +58,10 @@ function CandidateJobs() {
   };
   return (
     <div>
+      <h1>Search for job</h1>
       <JobSearch filter={filter} setFilter={setFilter} />
       {allJobs && allJobs.length === 0 ? (
-        <div>no job :(</div>
+        <div>no job :</div>
       ) : allJobs && allJobs.length > 0 ? (
         <div>
           {allJobs.map((item) => {

@@ -37,8 +37,8 @@ function JobSearch({ filter, setFilter }) {
     // On autofill we get a stringified value.
   };
   return (
-    <div>
-      <Grid constainer spacing={2}>
+    <div >
+      <Grid constainer spacing={2} >
         <Grid item xs={12} sm={6}>
           <Autocomplete
             fullWidth

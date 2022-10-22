@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
-import { TextField, Grid, Box, Button } from "@mui/material";
+import { getAuth, signOut } from "firebase/auth";
 import { Navigate, useNavigate } from "react-router-dom";
+import { TextField, Grid, Box, Button } from "@mui/material";
 
 function CandidateProfile() {
   const [candidateData, setCandidateData] = useState(null);
@@ -53,6 +54,14 @@ function CandidateProfile() {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     // localStorage.removeItem("real key");
+    const auth = getAuth();
+signOut(auth).then(() => {
+  // Sign-out succes
+  alert('your profile logout successfully');
+}).catch((error) => {
+  // An error happened.
+  console.log('hello')
+});
 
     reRoute();
   };

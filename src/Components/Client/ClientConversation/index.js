@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
-import MessageArea from "./MessageArea";
+import MessageArea from "../../common/MessageArea";
 import { Button, Grid } from "@mui/material";
 import {
   collection,
@@ -8,6 +8,7 @@ import {
   where,
   onSnapshot,
   setDoc,
+  orderBy,
   doc,
 } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
@@ -18,6 +19,7 @@ function ClientConversation() {
   const [allConversations, setAllConversations] = React.useState(null);
   const [allMessages, setAllMessages] = useState([]);
   const [selectedConversation, setSelectedConversation] = React.useState(null);
+
   const getAllConversation = async () => {
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
     const clientId = loggedInUser.uid;
@@ -36,10 +38,11 @@ function ClientConversation() {
     return unsubscribe;
   };
   const fetchAllOneToOneMessages = async () => {
-    setConversationMobileSidebar(false);
+    setConversationMobileSidebar(p=>!p);
     const q = await query(
       collection(db, "one-to-one"),
-      where("one_to_one_id", "==", selectedConversation.one_to_one_id)
+      where("one_to_one_id", "==", selectedConversation.one_to_one_id),
+      // orderBy("createdAt", "desc")
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const conversation = [];
@@ -65,6 +68,7 @@ function ClientConversation() {
     };
     await setDoc(doc(db, "one-to-one", message_id), message);
   };
+
   return (
     <div>
       <Grid container spacing={2}>
@@ -97,7 +101,7 @@ function ClientConversation() {
           }}
         >
           <Grid
-          onCLick={() => setConversationMobileSidebar(true)}
+          onClick={() => setConversationMobileSidebar(p=>!p)}
             sx={{
               display: {
                 xs: "block",

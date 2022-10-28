@@ -3,7 +3,13 @@ import LandingPage from "../Components/LandingPage";
 import Signup from "../Components/Signup";
 import ClientOnboarding from "../Components/OnboardingForm/ClientOnboarding";
 import CandidateONboarding from "../Components/OnboardingForm/CandidateOnboarding";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import CandidateProfile from "../Components/Candidate/CandidateProfile";
 import CandidateHOC from "../Components/HOC/CandidateHOC";
 import ClientProfile from "../Components/Client/ClientProfile";
@@ -15,6 +21,23 @@ import CandidateConversation from "../Components/Candidate/CandidateConversation
 import CLientApplicants from "../Components/Client/CLientApplicants";
 import ClientConversation from "../Components/Client/ClientConversation";
 function Navs() {
+  const auth = localStorage.getItem("token");
+  const userData = JSON.parse(localStorage.getItem("user"));
+  console.log(userData, "userData");
+  function PrivateRouteClient() {
+    return auth && userData.userInfo.user_type === "client" ? (
+      <Outlet />
+    ) : (
+      <Navigate to="/" />
+    );
+  }
+  function PrivateRouteCandidate() {
+    return auth && userData.userInfo.user_type === "candidate" ? (
+      <Outlet />
+    ) : (
+      <Navigate to="/" />
+    );
+  }
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Router>
@@ -25,80 +48,83 @@ function Navs() {
             element={<Signup type={"candidate"} />}
           />
 
-          <Route
-            path="/onboarding/candidate"
-            element={<CandidateONboarding />}
-          />
-
-          <Route
-            path="/candidate/profile"
-            element={
-              <CandidateHOC>
-                <CandidateProfile />
-              </CandidateHOC>
-            }
-          />
-          <Route
-            path="candidate/jobs"
-            element={
-              <CandidateHOC>
-                <CandidateJobs />
-              </CandidateHOC>
-            }
-          />
-
-          <Route
-            path="candidate/applications"
-            element={
-              <CandidateHOC>
-                <CandidateApplication />
-              </CandidateHOC>
-            }
-          />
-          <Route
-            path="candidate/conversation"
-            element={
-              <CandidateHOC>
-                <CandidateConversation />
-              </CandidateHOC>
-            }
-          />
-
           <Route path="/signIn/client" element={<Signup type={"client"} />} />
-          <Route path="/onboarding/client" element={<ClientOnboarding />} />
-          <Route
-            path="/client/profile"
-            element={
-              <ClientHOC>
-                <ClientProfile />
-              </ClientHOC>
-            }
-          />
-          <Route
-            path="/client/Jobs"
-            element={
-              <ClientHOC>
-                <PostJob />
-              </ClientHOC>
-            }
-          />
+          <Route element={<PrivateRouteCandidate />}>
+            <Route
+              path="/onboarding/candidate"
+              element={<CandidateONboarding />}
+            />
+            <Route
+              path="/candidate/profile"
+              element={
+                <CandidateHOC>
+                  <CandidateProfile />
+                </CandidateHOC>
+              }
+            />
 
-          <Route
-            path="/client/applicants"
-            element={
-              <ClientHOC>
-                <CLientApplicants />
-              </ClientHOC>
-            }
-          />
-          <Route
-            path="/client/conversation"
-            element={
-              <ClientHOC>
-                <ClientConversation />
-              </ClientHOC>
-            }
-          />
+            <Route
+              path="candidate/jobs"
+              element={
+                <CandidateHOC>
+                  <CandidateJobs />
+                </CandidateHOC>
+              }
+            />
+
+            <Route
+              path="candidate/applications"
+              element={
+                <CandidateHOC>
+                  <CandidateApplication />
+                </CandidateHOC>
+              }
+            />
+            <Route
+              path="candidate/conversation"
+              element={
+                <CandidateHOC>
+                  <CandidateConversation />
+                </CandidateHOC>
+              }
+            />
+          </Route>
+          <Route element={<PrivateRouteClient />}>
+            <Route path="/onboarding/client" element={<ClientOnboarding />} />
+            <Route
+              path="/client/profile"
+              element={
+                <ClientHOC>
+                  <ClientProfile />
+                </ClientHOC>
+              }
+            />
+            <Route
+              path="/client/Jobs"
+              element={
+                <ClientHOC>
+                  <PostJob />
+                </ClientHOC>
+              }
+            />
+
+            <Route
+              path="/client/applicants"
+              element={
+                <ClientHOC>
+                  <CLientApplicants />
+                </ClientHOC>
+              }
+            />
+            <Route
+              path="/client/conversation"
+              element={
+                <ClientHOC>
+                  <ClientConversation />
+                </ClientHOC>
+              }
+            />
+          </Route>
         </Routes>
       </Router>
     </Suspense>

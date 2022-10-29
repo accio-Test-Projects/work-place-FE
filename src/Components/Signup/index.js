@@ -24,10 +24,19 @@ function Signup({ type }) {
           JSON.stringify({ ...user, userInfo: { ...constDocData } })
         ); //store in Local storage
         localStorage.setItem("token", token);
+
         if (constDocData.step === 2) {
           if (type === "client") {
+            if(constDocData.user_type==='candidate'){
+              alert('You are not allowed to login as client')
+              return
+            }
             navigate("/client/profile");
           } else {
+            if(constDocData.user_type==='client'){
+              alert('You are not allowed to login as candidate')
+              return
+            }
             navigate("/candidate/profile");
           }
         } else {

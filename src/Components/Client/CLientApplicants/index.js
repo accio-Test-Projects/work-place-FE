@@ -81,6 +81,19 @@ function CLientApplicants() {
           },
           { merge: true }
         );
+        const changedData = [];
+
+        applications.forEach((application) => {
+          if (application.application_id === Applicationdata.application_id) {
+            let temp = { ...application,interest_showen:'accepted' };
+            changedData.push(temp);
+          }
+          else{
+          changedData.push(application);
+          }
+        });
+        console.log(changedData)
+        setAllApplications(changedData)
       } catch (err) {
         console.log(err);
       }

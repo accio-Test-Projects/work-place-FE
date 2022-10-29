@@ -38,10 +38,9 @@ function ClientConversation() {
     return unsubscribe;
   };
   const fetchAllOneToOneMessages = async () => {
-    setConversationMobileSidebar(p=>!p);
     const q = await query(
       collection(db, "one-to-one"),
-      where("one_to_one_id", "==", selectedConversation.one_to_one_id),
+      where("one_to_one_id", "==", selectedConversation.one_to_one_id)
       // orderBy("createdAt", "desc")
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -84,6 +83,7 @@ function ClientConversation() {
           }}
         >
           <Sidebar
+          setConversationMobileSidebar={setConversationMobileSidebar}
             setSelectedConversation={setSelectedConversation}
             allConversations={allConversations}
             getAllConversation={getAllConversation}
@@ -101,7 +101,7 @@ function ClientConversation() {
           }}
         >
           <Grid
-          onClick={() => setConversationMobileSidebar(p=>!p)}
+            onClick={() => setConversationMobileSidebar((p) => !p)}
             sx={{
               display: {
                 xs: "block",
@@ -109,7 +109,13 @@ function ClientConversation() {
               },
             }}
           >
-            <Button >
+            <Button
+              sx={{
+                position: "fixed",
+                top: 0,
+                backgroundColor: "#fff",
+              }}
+            >
               Back
             </Button>
           </Grid>

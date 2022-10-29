@@ -43,7 +43,6 @@ function CandidateConversation() {
   }
 
   const fetchAllOneToOneMessages = async () => {
-    setConversationMobileSidebar(p=>!p);
     const q = query(
       collection(db, "one-to-one"),
       where("one_to_one_id", "==", selectedConversation.one_to_one_id),
@@ -88,6 +87,7 @@ function CandidateConversation() {
         }}
       >
         <CandidateConversationSideBar
+        setConversationMobileSidebar={setConversationMobileSidebar}
           candidateConversation={candidateConversation}
           allConversations={allConversations}
           setSelectedConversation={setSelectedConversation}
@@ -109,16 +109,24 @@ function CandidateConversation() {
             display: {
               xs: "block",
               md: "none",
+              backgroundColor: "#fff",
             },
           }}
         >
-          <Button onClick={() => setConversationMobileSidebar(p=>!p)}>
+          <Button
+          sx={{
+            position:'fixed',
+            top:0,
+            backgroundColor: "#fff",
+          }}
+          onClick={() => setConversationMobileSidebar(true)}>
             Back
           </Button>
         </Grid>
         <MessageArea
            onSendMessage={onSendMessage}
           allMessages={allMessages}
+          
           fetchAllOneToOneMessages={fetchAllOneToOneMessages}
           selectedConversation={selectedConversation}
         />

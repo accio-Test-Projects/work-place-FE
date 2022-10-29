@@ -95,7 +95,7 @@ function CandidateProfile() {
                 email<span style={{ color: "red" }}>*</span>
               </label>
               <TextField
-                disabled={!editState}
+                disabled={true}
                 required
                 type="email"
                 value={candidateData.email}

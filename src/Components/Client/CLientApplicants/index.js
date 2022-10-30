@@ -25,7 +25,6 @@ function CLientApplicants() {
       let applications = [];
       querySnapshot.forEach((doc) => {
         applications.push(doc.data());
-        console.log(applications);
       });
       setAllApplications(applications);
     } catch (err) {
@@ -38,7 +37,7 @@ function CLientApplicants() {
   }, []);
 
   const handleAction = async (action, Applicationdata) => {
-    console.log(action, Applicationdata);
+
     if (action === "reject") {
       try {
         await deleteDoc(

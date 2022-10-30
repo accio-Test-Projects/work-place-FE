@@ -14,7 +14,6 @@ function CandidateProfile() {
       const docRef = doc(db, "usersData", userId);
       const docData = await getDoc(docRef);
       if (docData.exists()) {
-        console.log("Document data:", docData.data());
         setCandidateData({ ...docData.data() });
       } else {
         // doc.data() will be undefined in this case

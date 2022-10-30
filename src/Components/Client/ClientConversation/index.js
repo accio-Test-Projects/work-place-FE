@@ -33,7 +33,7 @@ function ClientConversation() {
         conversation.push(doc.data());
       });
       setAllConversations(conversation);
-      console.log("conversation ", conversation);
+  
     });
     return unsubscribe;
   };
@@ -49,7 +49,6 @@ function ClientConversation() {
         conversation.push(doc.data());
       });
       setAllMessages(conversation);
-      console.log("conversation ", conversation);
     });
     return unsubscribe;
   };

@@ -34,7 +34,6 @@ function CandidateConversation() {
           conversation.push(doc.data());
         });
         setAllConversations(conversation);
-        console.log("conversation ", conversation);
       });
       return unsubscribe;
     } catch (e) {
@@ -54,7 +53,6 @@ function CandidateConversation() {
         conversation.push(doc.data());
       });
       setAllMessages(conversation);
-      console.log("conversation ", conversation);
     });
     return unsubscribe;
   };

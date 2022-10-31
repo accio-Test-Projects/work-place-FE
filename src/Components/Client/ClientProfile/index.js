@@ -1,6 +1,7 @@
-import React, { useEffect, useState,useNavigate } from "react";
+import React, { useEffect, useState } from "react";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../../../config/firebaseInitisize";
+import {useNavigate} from 'react-router-dom'
 import { TextField, Grid, Box, Button } from "@mui/material";
 function ClientProfile() {
     const [clientData, setClientData] = useState(null);
@@ -26,6 +27,19 @@ function ClientProfile() {
     useEffect(() => {
       getProfile();
     }, []);
+
+  const navigate = useNavigate();
+  const reRoute = () => {
+    navigate("/");
+  };
+  const logoutProfile = () => {
+    alert("Are you want to Logout?");
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    // localStorage.removeItem("real key");
+
+    reRoute();
+  };
   
     const saveProfile = async (e) => {
       if (editState) {
@@ -62,7 +76,7 @@ function ClientProfile() {
               </Button>
             </Grid>
             <Grid item xs={2} md={2}>
-              <Button>Logout</Button>
+            <Button onClick={logoutProfile}>Logout</Button>
             </Grid>
           </Grid>
       <form>

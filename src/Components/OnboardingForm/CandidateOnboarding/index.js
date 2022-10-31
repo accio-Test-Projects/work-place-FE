@@ -72,7 +72,7 @@ function CandidateONboarding() {
       const docRef = await setDoc(doc(db, "usersData", userId), {
         ...candidateInfo,
         userId: userId,
-        step: 200,
+        step: 2,
         user_type: "candidate",
       });
 

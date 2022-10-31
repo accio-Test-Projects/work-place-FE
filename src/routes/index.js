@@ -47,13 +47,12 @@ function Navs() {
             path="/signIn/candidate"
             element={<Signup type={"candidate"} />}
           />
-
+          <Route
+            path="/onboarding/candidate"
+            element={<CandidateONboarding />}
+          />
           <Route path="/signIn/client" element={<Signup type={"client"} />} />
           <Route element={<PrivateRouteCandidate />}>
-            <Route
-              path="/onboarding/candidate"
-              element={<CandidateONboarding />}
-            />
             <Route
               path="/candidate/profile"
               element={
@@ -89,8 +88,8 @@ function Navs() {
               }
             />
           </Route>
+          <Route path="/onboarding/client" element={<ClientOnboarding />} />
           <Route element={<PrivateRouteClient />}>
-            <Route path="/onboarding/client" element={<ClientOnboarding />} />
             <Route
               path="/client/profile"
               element={

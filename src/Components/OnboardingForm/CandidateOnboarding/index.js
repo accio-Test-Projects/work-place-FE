@@ -64,19 +64,24 @@ function CandidateONboarding() {
   };
 
   const submitInfo = async (e) => {
-    let userInfo = JSON.parse(localStorage.getItem("user"));
-    let userId = userInfo.uid;
+    let userData = JSON.parse(localStorage.getItem("user"));
+    let userId = userData.uid;
     e.preventDefault();
     console.log(candidateInfo);
+    const finalInfo={
+      ...candidateInfo,
+      userId: userId,
+      step: 2,
+      user_type: "candidate",
+    }
     try {
       const docRef = await setDoc(doc(db, "usersData", userId), {
-        ...candidateInfo,
-        userId: userId,
-        step: 2,
-        user_type: "candidate",
+        ...finalInfo,
       });
-
+      localStorage.setItem('user', JSON.stringify({ ...userData, userInfo: { ...finalInfo } }));
+     setTimeout(() => {
       navigate("/candidate/profile");
+     }, 2000);
     } catch (e) {
       alert("Error occored");
       console.error("Error adding document: ", e);

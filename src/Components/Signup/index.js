@@ -26,17 +26,24 @@ function Signup({ type }) {
 
         if (constDocData.step === 2) {
           if (type === "client") {
-            if(constDocData.user_type==='candidate'){
-              alert('You are not allowed to login as client')
-              return
+            if (constDocData.user_type === "candidate") {
+              alert("You are not allowed to login as client");
+              return;
+            } else {
+              setTimeout(() => {
+                navigate("/client/profile");
+              }, 2000);
+             
             }
-            navigate("/client/profile");
           } else {
-            if(constDocData.user_type==='client'){
-              alert('You are not allowed to login as candidate')
-              return
+            if (constDocData.user_type === "client") {
+              alert("You are not allowed to login as candidate");
+              return;
+            } else {
+            setTimeout(() => {
+              navigate("/candidate/profile");
+            }, 2000);
             }
-            navigate("/candidate/profile");
           }
         } else {
           if (type === "client") {
@@ -72,7 +79,7 @@ function Signup({ type }) {
         localStorage.setItem("user", JSON.stringify(user)); //store in Local storage
         localStorage.setItem("token", token); //store in Local storage
         const userInfo = getProfile({ userId: user.uid, token, user, type });
-       
+
         // ...
       })
       .catch((error) => {

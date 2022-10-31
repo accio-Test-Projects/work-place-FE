@@ -20,19 +20,28 @@ function ClientOnboarding() {
   });
 
   const submitInfo = async (e) => {
-    let userInfo = JSON.parse(localStorage.getItem("user"));
-    let userId = userInfo.uid;
+    let userData = JSON.parse(localStorage.getItem("user"));
+    let userId = userData.uid;
     e.preventDefault();
     console.log(clientInfo);
+    const finaInfo = {
+      ...clientInfo,
+      userId: userId,
+      step: 2,
+      user_type: "client",
+    };
     try {
       const docRef = await setDoc(doc(db, "usersData", userId), {
-        ...clientInfo,
-        userId: userId,
-        step: 2,
-        user_type: "client",
+        ...finaInfo,
       });
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...userData, userInfo: { ...finaInfo } })
+      );
+        setTimeout(() => {
+          navigate("/client/profile");
+        }, 2000);
 
-      navigate("/client/profile");
     } catch (e) {
       alert("Error occored");
       console.error("Error adding document: ", e);

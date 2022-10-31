@@ -23,7 +23,6 @@ function Signup({ type }) {
           "user",
           JSON.stringify({ ...user, userInfo: { ...constDocData } })
         ); //store in Local storage
-        localStorage.setItem("token", token);
 
         if (constDocData.step === 2) {
           if (type === "client") {
@@ -70,8 +69,10 @@ function Signup({ type }) {
         // The signed-in user info.
         const user = result.user;
         console.log(user, "token", token);
+        localStorage.setItem("user", JSON.stringify(user)); //store in Local storage
+        localStorage.setItem("token", token); //store in Local storage
         const userInfo = getProfile({ userId: user.uid, token, user, type });
-
+       
         // ...
       })
       .catch((error) => {

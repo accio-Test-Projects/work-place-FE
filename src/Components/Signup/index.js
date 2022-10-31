@@ -47,6 +47,11 @@ function Signup({ type }) {
           }
         }
       } else {
+        if (type === "client") {
+          navigate("/onboarding/client");
+        } else {
+          navigate("/onboarding/candidate");
+        }
         // doc.data() will be undefined in this case
         console.log("No such document!");
       }
